@@ -21,6 +21,10 @@ declare module "sst" {
       "type": "sst.aws.Postgres"
       "username": string
     }
+    "mb-frontend": {
+      "type": "sst.aws.StaticSite"
+      "url": string
+    }
     "mb-vpc": {
       "type": "sst.aws.Vpc"
     }

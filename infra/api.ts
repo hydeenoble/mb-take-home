@@ -1,6 +1,7 @@
 import { database, vpc } from './storage';
 
 export const api = new sst.aws.ApiGatewayV1("mb-api", {
+  cors: false,
   transform: {
     route: {
       handler: (args, opts) => {

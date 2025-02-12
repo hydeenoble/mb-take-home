@@ -46,9 +46,9 @@ export async function getDbPool() {
       password: process.env.DB_PASSWORD,
       port: parseInt(process.env.DB_PORT || "5432", 10),
     });
-  }
 
-  await initializeDatabase(dbPool);
+    await initializeDatabase(dbPool);
+  }
 
   return dbPool;
 }

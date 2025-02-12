@@ -11,12 +11,22 @@ export const handler: Handler = async (_event) => {
     const result = await pool.query("SELECT * FROM tasks");
     return {
       statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*", // Or your specific origin
+        "Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
+        "Access-Control-Allow-Methods": "OPTIONS,POST,GET" // Add other methods as needed
+      },
       body: JSON.stringify(result.rows),
     };
   } catch (error) {
     console.log("Database connection failed:", error);
     return {
       statusCode: 500,
+      headers: {
+        "Access-Control-Allow-Origin": "*", // Or your specific origin
+        "Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
+        "Access-Control-Allow-Methods": "OPTIONS,POST,GET" // Add other methods as needed
+      },
       body: JSON.stringify({ error: 'Failed to fetch tasks' }),
     };
   }
