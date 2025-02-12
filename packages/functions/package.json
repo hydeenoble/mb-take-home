@@ -1,9 +1,10 @@
 {
-  "name": "@monorepo-template/functions",
+  "name": "@mb-app/functions",
   "version": "0.0.0",
   "type": "module",
   "dependencies": {
-    "@monorepo-template/core": "*",
+    "@mb-app/core": "*",
+    "pg": "^8.13.2",
     "sst": "*"
   },
   "devDependencies": {
