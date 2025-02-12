@@ -6,7 +6,6 @@ const App = () => {
   const [newTask, setNewTask] = useState({ description: '' });
 
   const API_URL = import.meta.env.VITE_API_URL;
-  // "https://ltgm06ka1l.execute-api.us-east-2.amazonaws.com/stage"
 
   useEffect(() => {
     fetchTasks();
@@ -47,13 +46,38 @@ const App = () => {
 
   return (
     <div class="container-fluid" >
+
       <h1 class="text-center">Task Manager</h1>
+      <br />
+
 
       <div class="container">
 
         <div class="row">
 
-          <div class="col">
+          <div class="col-md-6 col-sm-12 col-xs-12">
+            <form onSubmit={createTask}>
+
+              <div class="mb-3">
+                <textarea
+                  type="text"
+                  value={newTask.description}
+                  onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
+                  placeholder="Task description"
+                  class="form-control"
+                  id="description"
+                  rows="3"
+                ></textarea>
+              </div>
+
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-4">
+                <button type="submit" class="btn btn-primary">Add Task</button>
+              </div>
+
+            </form>
+          </div>
+
+          <div class="col-md-6 col-sm-12 col-xs-12">
             
             <div class="card">
               <div class="card-header">
@@ -66,30 +90,6 @@ const App = () => {
               </ul>
             </div>
           </div>
-
-          <div class="col">
-            <form onSubmit={createTask}>
-
-              <div class="mb-3">
-                <label for="description" class="form-label">Task description</label>
-                <textarea
-                  type="text"
-                  value={newTask.description}
-                  onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
-                  // placeholder="Task description"
-                  class="form-control"
-                  id="description"
-                  rows="3"
-                ></textarea>
-              </div>
-
-              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button type="submit" class="btn btn-primary">Add Task</button>
-              </div>
-
-            </form>
-          </div>
-
 
         </div>
 
