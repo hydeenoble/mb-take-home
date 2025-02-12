@@ -8,6 +8,7 @@
     "sst": "*"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8"
+    "@types/aws-lambda": "^8",
+    "@types/pg": "^8.11.11"
   }
 }

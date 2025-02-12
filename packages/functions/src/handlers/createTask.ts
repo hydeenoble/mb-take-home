@@ -1,5 +1,5 @@
 import { APIGatewayProxyHandler } from 'aws-lambda';
-import { query } from '../db/dbClient';
+import { getDbPool } from '../db/dbClient';
 import { Task } from '../types/task';
 
 export const handler: APIGatewayProxyHandler = async (event) => {
@@ -7,9 +7,10 @@ export const handler: APIGatewayProxyHandler = async (event) => {
     const task: Task = JSON.parse(event.body || '');
     const { description } = task;
 
-    const result = await query(
-      'INSERT INTO tasks (title, description, completed) VALUES ($1) RETURNING *',
-      [description]
+    const pool = await getDbPool();
+
+    const result = await pool.query(
+      'INSERT INTO tasks (description) VALUES ($1) RETURNING *',[description]
     );
 
     return {
