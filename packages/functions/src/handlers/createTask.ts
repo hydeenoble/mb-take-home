@@ -1,8 +1,12 @@
-import { APIGatewayProxyHandler } from 'aws-lambda';
+import * as Sentry from "@sentry/aws-serverless";
+
+// TODO: Add more configurationg for Sentry to get more detailed error
+
+import { Handler } from 'aws-lambda';
 import { getDbPool } from '../db/dbClient';
 import { Task } from '../types/task';
 
-export const handler: APIGatewayProxyHandler = async (event) => {
+export const handler: Handler = Sentry.wrapHandler(async (event) => {
   try {
     const task: Task = JSON.parse(event.body || '');
     const { description } = task;
@@ -33,4 +37,4 @@ export const handler: APIGatewayProxyHandler = async (event) => {
       body: JSON.stringify({ error: 'Failed to create task' }),
     };
   }
-};
+});

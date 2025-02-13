@@ -13,13 +13,24 @@ export const api = new sst.aws.ApiGatewayV1("mb-api", {
           DB_USER: database.username,
           DB_PASSWORD: database.password,
           DB_NAME: database.database,
-          DB_PORT: "5432"
+          DB_PORT: "5432",
+          NODE_OPTIONS: "--import @sentry/aws-serverless/awslambda-auto",
+          SENTRY_DSN: new sst.Secret("API_SENTRY_DSN").value,
+          SENTRY_TRACES_SAMPLE_RATE: "1.0"
         };
 
         args.vpc = {
           privateSubnets: vpc.privateSubnets,
           securityGroups: vpc.securityGroups
-        }
+        };
+
+        args.nodejs = {
+          sourcemap: true,
+          install: ["@sentry/aws-serverless", "@sentry/profiling-node"],
+          // loader: {
+          //   ".node": "file", // Configure loader for .node files
+          // }
+        };
 
       }
     }

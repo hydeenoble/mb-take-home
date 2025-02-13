@@ -4,6 +4,8 @@
   "type": "module",
   "dependencies": {
     "@mb-app/core": "*",
+    "@sentry/aws-serverless": "^8.55.0",
+    "@sentry/profiling-node": "^9.1.0",
     "pg": "^8.13.2",
     "sst": "*"
   },
