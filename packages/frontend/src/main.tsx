@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import * as Sentry from "@sentry/react";
 
 Sentry.init({
-  dsn: "https://b3fbb75388ee23780a9711d171bdc337@o4508807719092224.ingest.us.sentry.io/4508807726694400",
+  dsn: import.meta.env.SENTRY_DSN,
   integrations: [
     Sentry.browserTracingIntegration(),
     Sentry.replayIntegration(),
