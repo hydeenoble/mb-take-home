@@ -64,6 +64,8 @@ const App = () => {
   return (
     <div class="container-fluid" >
 
+      <button onClick={() => {throw new Error("This is your first error!");}}>Break the world</button>
+
       <h1 class="text-center">Task Manager</h1>
       <br />
 
