@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from "react-dom";
 import * as Sentry from "@sentry/react";
 
 Sentry.init({
-  dsn: import.meta.env.MB_FRONTEND_SENTRY_DSN,
+  dsn: "https://e0f6b1acbf41006c0ef25550ded86b89@o4508807719092224.ingest.us.sentry.io/4508817680433152",
   integrations: [
     Sentry.browserTracingIntegration(),
     Sentry.replayIntegration(),
@@ -17,6 +15,24 @@ Sentry.init({
   replaysOnErrorSampleRate: 1.0, // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.
 });
 
+import React, { useState, useEffect } from 'react';
+import ReactDOM from "react-dom";
+
+// Sentry.init({
+//   dsn: import.meta.env.MB_FRONTEND_SENTRY_DSN,
+//   integrations: [
+//     Sentry.browserTracingIntegration(),
+//     Sentry.replayIntegration(),
+//   ],
+//   // Tracing
+//   tracesSampleRate: 1.0, //  Capture 100% of the transactions
+//   // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
+//   tracePropagationTargets: ["localhost", import.meta.env.VITE_API_URL],
+//   // Session Replay
+//   replaysSessionSampleRate: 0.1, // This sets the sample rate at 10%. You may want to change it to 100% while in development and then sample at a lower rate in production.
+//   replaysOnErrorSampleRate: 1.0, // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.
+// });
+
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
@@ -29,7 +45,6 @@ const App = () => {
   }, []);
 
   const fetchTasks = async () => {
-    console.log("in the fetchTasks function");
     try {
       const response = await fetch(API_URL);
       if (!response.ok) {
@@ -70,7 +85,7 @@ const App = () => {
   return (
     <div class="container-fluid" >
 
-      {/* <button onClick={() => {throw new Error("This is your first error!");}}>Break the world</button> */}
+      <button onClick={() => {throw new Error("This is your first error!");}}>Break the world</button>
 
       <h1 class="text-center">Task Manager</h1>
       <br />

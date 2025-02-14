@@ -17,10 +17,6 @@ declare module "sst" {
       "type": "sst.sst.Secret"
       "value": string
     }
-    "mb-vpc": {
-      "bastion": string
-      "type": "sst.aws.Vpc"
-    }
     "mightyByteApi": {
       "type": "sst.aws.ApiGatewayV1"
       "url": string
@@ -36,6 +32,10 @@ declare module "sst" {
     "mightyByteFrontend": {
       "type": "sst.aws.StaticSite"
       "url": string
+    }
+    "mightyByteVpc": {
+      "bastion": string
+      "type": "sst.aws.Vpc"
     }
   }
 }
