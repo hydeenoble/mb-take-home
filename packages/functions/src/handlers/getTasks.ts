@@ -1,8 +1,5 @@
 import * as Sentry from "@sentry/aws-serverless";
 
-import { query } from '../db/dbClient';
-import { Handler } from "aws-lambda";
-
 Sentry.init({
   dsn: process.env.SENTRY_DSN,
   integrations: [],
@@ -24,6 +21,9 @@ Sentry.startSpan({
 // your application until the process exits or stopProfiling is called.
 Sentry.profiler.stopProfiler();
 // Place any other require/import statements here
+import { query } from '../db/dbClient';
+import { Handler } from "aws-lambda";
+
 
 export const handler: Handler = Sentry.wrapHandler(async (_event) => {
 
@@ -56,5 +56,3 @@ export const handler: Handler = Sentry.wrapHandler(async (_event) => {
     }
   }
 );
-
-// export const handler: Handler = 
