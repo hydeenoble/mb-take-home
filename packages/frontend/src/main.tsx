@@ -41,7 +41,7 @@ const App = () => {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState({ description: '' });
 
-  const API_URL = import.meta.env.VITE_API_URL;
+  const API_URL = `${import.meta.env.VITE_API_URL}/tasks`;
 
   useEffect(() => {
     fetchTasks();
@@ -88,7 +88,7 @@ const App = () => {
   return (
     <div class="container-fluid" >
 
-      <button onClick={() => {throw new Error("ANOTHER ERROR: This is your first error!");}}>Break the world</button>
+      {/* <button onClick={() => {throw new Error("ANOTHER ERROR: This is your first error!");}}>Break the world</button> */}
 
       <h1 class="text-center">Task Manager</h1>
       <br />

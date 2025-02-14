@@ -38,7 +38,7 @@ export const api = new sst.aws.ApiGatewayV1("mightyByteApi", {
   }
 });
 
-api.route("GET /", "packages/functions/src/handlers/getTasks.handler");
-api.route("POST /", "packages/functions/src/handlers/createTask.handler");
+api.route("GET /tasks", "packages/functions/src/handlers/getTasks.handler");
+api.route("POST /tasks", "packages/functions/src/handlers/createTask.handler");
 
 api.deploy();

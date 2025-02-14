@@ -1,32 +1,60 @@
-# Monorepo Template
+# SRE Coding Exercise: Deploy and Monitor a Serverless Application
 
-A template to create a monorepo SST v3 project. [Learn more](https://sst.dev/docs/set-up-a-monorepo).
 
-## Get started
+This project uses the [official SST v3 monorepo template](https://sst.dev/docs/set-up-a-monorepo) to create a monorepo SST v3 project.
 
-1. Use this template to [create your own repo](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+## Set Instruction
 
-2. Clone the new repo.
-
+1. Clone the repo
    ```bash
-   git clone <REPO_URL> MY_APP
-   cd MY_APP
+   clone command
    ```
-
-3. Rename the files in the project to the name of your app.
-
-   ```bash
-   npx replace-in-file '/mb-app/g' 'MY_APP' '**/*.*' --verbose
-   ```
-
-4. Deploy!
+2. Install Dependcies
 
    ```bash
    npm install
+   ```
+
+4. Deploy Locally
+
+   ```bash
    npx sst deploy
    ```
 
-5. Optionally, enable [_git push to deploy_](https://sst.dev/docs/console/#autodeploy).
+> NOTE  
+> Before testing, you need to manage the DB migrations with the commands before (You only need to run it only once except there are changes to the migration)
+
+5. Generate a migration
+
+   We can use this to generate a migration.
+
+   ```bash
+   npm run db generate
+   ```
+6. Apply the migration
+   
+   Now we can apply our migration using.
+   ```bash
+   npm run db migrate
+   ```
+
+## Testing: Curl Command
+
+1. GET /tasks
+
+```bash
+curl https://4h6vusgz1k.execute-api.us-east-2.amazonaws.com/stage/tasks
+```
+
+2. POST /tasks
+
+```bash
+curl -H 'Content-Type: application/json' -d '{ "description":"This the first tasks" }' -X POST https://4h6vusgz1k.execute-api.us-east-2.amazonaws.com/stage/tasks
+
+```
+
+## Additional Links
+
 
 ## Usage
 
