@@ -1,6 +1,6 @@
 import { api } from './api';
 
-export const site = new sst.aws.StaticSite("mb-frontend", {
+export const site = new sst.aws.StaticSite("mightyByteFrontend", {
     path: "packages/frontend",
     build: {
         command: "npm run build",
