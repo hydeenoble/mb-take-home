@@ -3,7 +3,7 @@ import * as Sentry from "@sentry/aws-serverless";
 // TODO: Add more configurationg for Sentry to get more detailed error
 
 import { Handler } from 'aws-lambda';
-import { getDbPool } from '../db/dbClient';
+import { query } from '../db/dbClient';
 import { Task } from '../types/task';
 
 export const handler: Handler = Sentry.wrapHandler(async (event) => {
@@ -11,9 +11,7 @@ export const handler: Handler = Sentry.wrapHandler(async (event) => {
     const task: Task = JSON.parse(event.body || '');
     const { description } = task;
 
-    const pool = await getDbPool();
-
-    const result = await pool.query(
+    const result = await query(
       'INSERT INTO tasks (description) VALUES ($1) RETURNING *',[description]
     );
 
