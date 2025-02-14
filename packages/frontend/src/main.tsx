@@ -1,7 +1,7 @@
 import * as Sentry from "@sentry/react";
-
+// "https://e0f6b1acbf41006c0ef25550ded86b89@o4508807719092224.ingest.us.sentry.io/4508817680433152"
 Sentry.init({
-  dsn: "https://e0f6b1acbf41006c0ef25550ded86b89@o4508807719092224.ingest.us.sentry.io/4508817680433152",
+  dsn: import.meta.env.VITE_SENTRY_DSN,
   integrations: [
     Sentry.browserTracingIntegration(),
     Sentry.replayIntegration(),
@@ -17,6 +17,8 @@ Sentry.init({
 
 import React, { useState, useEffect } from 'react';
 import ReactDOM from "react-dom";
+
+// console.log("first - import.meta.env.VITE_SENTRY_DSN", import.meta.env.VITE_SENTRY_DSN);
 
 // Sentry.init({
 //   dsn: import.meta.env.MB_FRONTEND_SENTRY_DSN,
@@ -35,6 +37,7 @@ import ReactDOM from "react-dom";
 
 
 const App = () => {
+  
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState({ description: '' });
 
@@ -85,7 +88,7 @@ const App = () => {
   return (
     <div class="container-fluid" >
 
-      <button onClick={() => {throw new Error("This is your first error!");}}>Break the world</button>
+      <button onClick={() => {throw new Error("ANOTHER ERROR: This is your first error!");}}>Break the world</button>
 
       <h1 class="text-center">Task Manager</h1>
       <br />

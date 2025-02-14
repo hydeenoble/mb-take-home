@@ -4,7 +4,7 @@
 /// <reference types="vite/client" />
 interface ImportMetaEnv {
   readonly VITE_API_URL: string
-  readonly MB_FRONTEND_SENTRY_DSN: string
+  readonly VITE_SENTRY_DSN: string
 }
 interface ImportMeta {
   readonly env: ImportMetaEnv
