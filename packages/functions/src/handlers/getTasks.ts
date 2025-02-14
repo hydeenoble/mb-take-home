@@ -2,16 +2,15 @@ import * as Sentry from "@sentry/aws-serverless";
 
 // TODO: Add more configurationg for Sentry to get more detailed error
 
-import { getDbPool } from '../db/dbClient';
+import { query } from '../db/dbClient';
 import { Handler } from "aws-lambda";
 
 export const handler: Handler = Sentry.wrapHandler(async (_event) => {
 
     try {
-  
-      const pool = await getDbPool();
-  
-      const result = await pool.query("SELECT * FROM tasks");
+    
+      const result = await query("SELECT * FROM tasks", []);
+      
       return {
         statusCode: 200,
         headers: {
