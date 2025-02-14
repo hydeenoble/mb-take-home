@@ -15,9 +15,9 @@ export const api = new sst.aws.ApiGatewayV1("mightyByteApi", {
           DB_PASSWORD: database.password,
           DB_NAME: database.database,
           DB_PORT: "5432",
-          NODE_OPTIONS: "--import @sentry/aws-serverless/awslambda-auto",
+          // NODE_OPTIONS: "--import @sentry/aws-serverless/awslambda-auto",
           SENTRY_DSN: sentry_dns.value,
-          SENTRY_TRACES_SAMPLE_RATE: "1.0"
+          // SENTRY_TRACES_SAMPLE_RATE: "1.0"
         };
 
         args.vpc = {
