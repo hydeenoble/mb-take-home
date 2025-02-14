@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react(), sentryVitePlugin({
     org: "mightybyte-gv",
-    project: "javascript-react"
+    project: "mb-frontend"
   })],
 
   build: {

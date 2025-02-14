@@ -8,6 +8,6 @@ export const site = new sst.aws.StaticSite("mightyByteFrontend", {
       },
     environment: {
       VITE_API_URL: api.url, // Pass the API URL to the frontend
-      MB_FRONTEND_SENTRY_DSN: new sst.Secret("MB_FRONTEND_SENTRY_DSN").value,
+      VITE_SENTRY_DSN: new sst.Secret("MB_FRONTEND_SENTRY_DSN").value,
     },
   });
