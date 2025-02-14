@@ -21,8 +21,9 @@ Sentry.startSpan({
 // your application until the process exits or stopProfiling is called.
 Sentry.profiler.stopProfiler();
 // Place any other require/import statements here
-import { query } from '../db/dbClient';
+import { db } from '../db/dbClient';
 import { Handler } from "aws-lambda";
+import { tasks } from "../../../core/src/migrations/tasks";
 
 
 export const handler: Handler = Sentry.wrapHandler(async (_event) => {
@@ -30,9 +31,8 @@ export const handler: Handler = Sentry.wrapHandler(async (_event) => {
   // throw new Error("This should show up in Sentry!")
 
     try {
-    
-      const result = await query("SELECT * FROM tasks", []);
-      
+      const result = await db.select().from(tasks).execute();
+
       return {
         statusCode: 200,
         headers: {
@@ -40,7 +40,7 @@ export const handler: Handler = Sentry.wrapHandler(async (_event) => {
           "Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
           "Access-Control-Allow-Methods": "OPTIONS,POST,GET" // Add other methods as needed
         },
-        body: JSON.stringify(result.rows),
+        body: JSON.stringify(result),
       };
     } catch (error) {
       console.log("Database connection failed:", error);
