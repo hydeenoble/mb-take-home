@@ -5,7 +5,8 @@
     "packages/*"
   ],
   "scripts": {
-    "db": "sst shell drizzle-kit"
+    "db": "sst shell drizzle-kit",
+    "db:stage": "sst shell --stage stage drizzle-kit"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22",
