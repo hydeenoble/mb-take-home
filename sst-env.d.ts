@@ -5,29 +5,6 @@
 
 declare module "sst" {
   export interface Resource {
-    "DB_PASSWORD": {
-      "type": "sst.sst.Secret"
-      "value": string
-    }
-    "mb-api": {
-      "type": "sst.aws.ApiGatewayV1"
-      "url": string
-    }
-    "mb-db": {
-      "database": string
-      "host": string
-      "password": string
-      "port": number
-      "type": "sst.aws.Postgres"
-      "username": string
-    }
-    "mb-frontend": {
-      "type": "sst.aws.StaticSite"
-      "url": string
-    }
-    "mb-vpc": {
-      "type": "sst.aws.Vpc"
-    }
   }
 }
 /// <reference path="sst-env.d.ts" />

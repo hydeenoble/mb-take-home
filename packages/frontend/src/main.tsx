@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import * as Sentry from "@sentry/react";
 
 Sentry.init({
-  dsn: import.meta.env.SENTRY_DSN,
+  dsn: import.meta.env.MB_FRONTEND_SENTRY_DSN,
   integrations: [
     Sentry.browserTracingIntegration(),
     Sentry.replayIntegration(),
@@ -29,6 +29,7 @@ const App = () => {
   }, []);
 
   const fetchTasks = async () => {
+    console.log("in the fetchTasks function");
     try {
       const response = await fetch(API_URL);
       if (!response.ok) {
@@ -47,12 +48,20 @@ const App = () => {
       const response = await fetch(API_URL, {
         // mode: 'no-cors',
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
         body: JSON.stringify(newTask),
       });
+
+      console.log("raw response", response);
+
       if (!response.ok) {
         throw new Error('Failed to create task');
       }
+
+      console.log("raw response ok", response);
       const createdTask = await response.json();
       setTasks([...tasks, createdTask]);
       setNewTask({ description: '' });
@@ -64,7 +73,7 @@ const App = () => {
   return (
     <div class="container-fluid" >
 
-      <button onClick={() => {throw new Error("This is your first error!");}}>Break the world</button>
+      {/* <button onClick={() => {throw new Error("This is your first error!");}}>Break the world</button> */}
 
       <h1 class="text-center">Task Manager</h1>
       <br />

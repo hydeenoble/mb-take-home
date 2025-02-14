@@ -1,5 +1,7 @@
 import { database, vpc } from './storage';
 
+const sentry_dns = new sst.Secret("MB_SENTRY_DSN");
+
 export const api = new sst.aws.ApiGatewayV1("mb-api", {
   cors: false,
   transform: {
@@ -15,7 +17,7 @@ export const api = new sst.aws.ApiGatewayV1("mb-api", {
           DB_NAME: database.database,
           DB_PORT: "5432",
           NODE_OPTIONS: "--import @sentry/aws-serverless/awslambda-auto",
-          SENTRY_DSN: new sst.Secret("API_SENTRY_DSN").value,
+          SENTRY_DSN: sentry_dns.value,
           SENTRY_TRACES_SAMPLE_RATE: "1.0"
         };
 
