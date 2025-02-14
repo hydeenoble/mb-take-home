@@ -2,8 +2,7 @@ import { database, vpc } from './storage';
 
 const sentry_dns = new sst.Secret("MB_SENTRY_DSN");
 
-export const api = new sst.aws.ApiGatewayV1("mb-api", {
-  cors: false,
+export const api = new sst.aws.ApiGatewayV1("mightyByteApi", {
   transform: {
     route: {
       handler: (args, opts) => {

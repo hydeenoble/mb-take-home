@@ -5,6 +5,38 @@
 
 declare module "sst" {
   export interface Resource {
+    "DB_PASSWORD": {
+      "type": "sst.sst.Secret"
+      "value": string
+    }
+    "MB_FRONTEND_SENTRY_DSN": {
+      "type": "sst.sst.Secret"
+      "value": string
+    }
+    "MB_SENTRY_DSN": {
+      "type": "sst.sst.Secret"
+      "value": string
+    }
+    "mb-vpc": {
+      "bastion": string
+      "type": "sst.aws.Vpc"
+    }
+    "mightyByteApi": {
+      "type": "sst.aws.ApiGatewayV1"
+      "url": string
+    }
+    "mightyByteDatabase": {
+      "database": string
+      "host": string
+      "password": string
+      "port": number
+      "type": "sst.aws.Postgres"
+      "username": string
+    }
+    "mightyByteFrontend": {
+      "type": "sst.aws.StaticSite"
+      "url": string
+    }
   }
 }
 /// <reference path="sst-env.d.ts" />
