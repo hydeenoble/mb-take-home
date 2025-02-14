@@ -32,10 +32,6 @@ export const handler: Handler = Sentry.wrapHandler(async (event) => {
     const task: Task = JSON.parse(event.body || '');
     const { description } = task;
 
-    // const result = await query(
-    //   'INSERT INTO tasks (description) VALUES ($1) RETURNING *',[description]
-    // );
-
     const result = await db
       .insert(tasks)
       .values({ description: description })
@@ -45,9 +41,7 @@ export const handler: Handler = Sentry.wrapHandler(async (event) => {
     return {
       statusCode: 201,
       headers: {
-        "Access-Control-Allow-Origin": "*", // Or your specific origin
-        "Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
-        "Access-Control-Allow-Methods": "OPTIONS,POST,GET" // Add other methods as needed
+        "Access-Control-Allow-Origin": "*"
       },
       body: JSON.stringify(result),
     };
@@ -55,9 +49,7 @@ export const handler: Handler = Sentry.wrapHandler(async (event) => {
     return {
       statusCode: 500,
       headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
-        "Access-Control-Allow-Methods": "OPTIONS,POST,GET" // Add other methods as needed
+        "Access-Control-Allow-Origin": "*"
       },
       body: JSON.stringify({ error: 'Failed to create task' }),
     };
