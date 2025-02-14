@@ -5,10 +5,3 @@ export const tasks = pgTable("tasks", {
   description: text("description").notNull(),
   created_at: timestamp("created_at").defaultNow().notNull(),
 });
-
-
-// CREATE TABLE tasks (
-//     id SERIAL PRIMARY KEY,
-//     description TEXT NOT NULL,
-//     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-//   );

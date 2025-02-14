@@ -22,8 +22,9 @@ Sentry.startSpan({
 Sentry.profiler.stopProfiler();
 // Place any other require/import statements here
 
-import { Handler } from 'aws-lambda';
-import { query } from '../db/dbClient';
+import { db } from '../db/dbClient';
+import { Handler } from "aws-lambda";
+import { tasks } from "../../../core/src/migrations/tasks";
 import { Task } from '../types/task';
 
 export const handler: Handler = Sentry.wrapHandler(async (event) => {
@@ -31,9 +32,15 @@ export const handler: Handler = Sentry.wrapHandler(async (event) => {
     const task: Task = JSON.parse(event.body || '');
     const { description } = task;
 
-    const result = await query(
-      'INSERT INTO tasks (description) VALUES ($1) RETURNING *',[description]
-    );
+    // const result = await query(
+    //   'INSERT INTO tasks (description) VALUES ($1) RETURNING *',[description]
+    // );
+
+    const result = await db
+      .insert(tasks)
+      .values({ description: description })
+      .returning()
+      .execute();
 
     return {
       statusCode: 201,
@@ -42,7 +49,7 @@ export const handler: Handler = Sentry.wrapHandler(async (event) => {
         "Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
         "Access-Control-Allow-Methods": "OPTIONS,POST,GET" // Add other methods as needed
       },
-      body: JSON.stringify(result.rows[0]),
+      body: JSON.stringify(result),
     };
   } catch (error) {
     return {
