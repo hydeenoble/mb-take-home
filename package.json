@@ -6,10 +6,15 @@
   ],
   "scripts": {
     "db": "sst shell drizzle-kit",
-    "db:stage": "sst shell --stage stage drizzle-kit"
+    "db:stage": "sst shell --stage stage drizzle-kit",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22",
+    "@types/jest": "^29.5.14",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   },
   "dependencies": {
