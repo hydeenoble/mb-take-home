@@ -1,7 +1,12 @@
 {
-  "extends": "@tsconfig/node22/tsconfig.json",
+  // "extends": "@tsconfig/node22/tsconfig.json",
   "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "module": "CommonJS",
+    "target": "ES2020",
+    "esModuleInterop": true,
+    "skipLibCheck": true
   },
+  "include": [
+    "src/**/*"
+  ]
 }

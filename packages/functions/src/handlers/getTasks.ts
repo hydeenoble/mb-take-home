@@ -28,8 +28,6 @@ import { tasks } from "../../../core/src/migrations/tasks";
 
 export const handler: Handler = Sentry.wrapHandler(async (_event) => {
 
-  // throw new Error("This should show up in Sentry!")
-
     try {
       const result = await db.select().from(tasks).execute();
 
