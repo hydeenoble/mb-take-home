@@ -1,4 +1,6 @@
 import * as Sentry from "@sentry/react";
+import React, { useState, useEffect } from 'react';
+import ReactDOM from "react-dom";
 
 Sentry.init({
   dsn: import.meta.env.VITE_SENTRY_DSN,
@@ -15,19 +17,12 @@ Sentry.init({
   replaysOnErrorSampleRate: 1.0, // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.
 });
 
-import React, { useState, useEffect } from 'react';
-import ReactDOM from "react-dom";
-
 const App = () => {
   
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState({ description: '' });
 
   const API_URL = `${import.meta.env.VITE_API_URL}/tasks`;
-
-  useEffect(() => {
-    fetchTasks();
-  }, []);
 
   const fetchTasks = async () => {
     try {
@@ -41,6 +36,10 @@ const App = () => {
       console.error('Error fetching tasks:', error);
     }
   };
+
+  useEffect(() => {
+    fetchTasks();
+  }, [fetchTasks]);
 
   const createTask = async (e) => {
     e.preventDefault();
@@ -60,7 +59,6 @@ const App = () => {
       
       const createdTask = await response.json();
       setTasks([...tasks, createdTask]);
-
       setNewTask({ description: '' });
 
     } catch (error) {

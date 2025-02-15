@@ -29,8 +29,7 @@ import { Task } from '../types/task';
 
 export const handler: Handler = Sentry.wrapHandler(async (event) => {
   try {
-    console.log("event", event);
-    console.log("eveevent.bodynt", event.body);
+
     const task: Task = JSON.parse(event.body || '');
     const { description } = task;
 
