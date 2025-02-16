@@ -6,7 +6,7 @@ This project uses the [official SST v3 monorepo template](https://sst.dev/docs/s
 * Install Node  (This application was tested with node version `v23.7.0`)
 * Install SST v3 (Optional)
 * Install AWS CLI
-* Configure AWS Credentials with appropraite permissions. 
+* Configure AWS Credentials with appropraite permissions (This application creates RDS, AWS Lambda, API Gateway and S3). 
 
 ## Setup Instruction
 
@@ -56,13 +56,13 @@ This project uses the [official SST v3 monorepo template](https://sst.dev/docs/s
 
 > Repeat steps 3, 5 and 6 from the `Setup Instruction` section.
 
-> TIP: You need a tunnel to connect to your database (during migration). You can run the command below ot ensure connection: 
+> TIP: You need a tunnel to connect to your database (during migration). You can run the command below to ensure connection: 
 
 ```bash
 npx sst tunnel --stage stage 
 ```
 
-Deploy to `stage` stage
+### Deploy to `stage` stage
 
 ```bash
 npx sst deploy --stage stage

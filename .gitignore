@@ -22,6 +22,8 @@ node_modules
 # Sentry
 .env.sentry-build-plugin
 
-#Test 
+# Test 
 coverage/*
 
+# DB Migration
+migrations/**
