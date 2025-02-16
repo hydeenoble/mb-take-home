@@ -5,6 +5,8 @@ This project uses the [official SST v3 monorepo template](https://sst.dev/docs/s
 ## Prerequisites
 * Install Node  (This application was tested with node version `v23.7.0`)
 * Install SST v3 (Optional)
+* Install AWS CLI
+* Configure AWS Credentials with appropraite permissions. 
 
 ## Setup Instruction
 
