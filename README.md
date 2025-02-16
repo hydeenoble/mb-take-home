@@ -123,4 +123,5 @@ The `infra/` directory holds all the needed infrastructure logically broken down
 ## Possible Improvement
 1. Implement deployment with CICD (Github Action).
 2. Security: Add authentication on the API Gateway.
-3. Secret will managed external with AWS SSM. 
+3. Manage secrets properly with AWS SSM.
+4. In prepare for production, Configure infrastructure for scalability, cost optimization and enhance overrall application performance. 
