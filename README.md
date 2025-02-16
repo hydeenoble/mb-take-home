@@ -35,8 +35,7 @@ This project uses the [official SST v3 monorepo template](https://sst.dev/docs/s
    npx sst dev
    ```
 
-> NOTE  
-> Before testing, you need to manage the DB migrations with the commands before (You only need to run it only once except there are changes to the migration)
+> **NOTE**: Before testing, you need to manage the DB migrations with the commands below (You only need to run it only once except there are changes to the migration)
 
 5. Generate a migration
 
@@ -52,6 +51,20 @@ This project uses the [official SST v3 monorepo template](https://sst.dev/docs/s
    npm run db migrate
    ```
 
+## Testing: Curl Command
+
+1. GET /tasks
+
+```bash
+curl https://<API Gateway URL>/stage/tasks
+```
+
+2. POST /tasks
+
+```bash
+curl -H 'Content-Type: application/json' -d '{ "description":"This the first tasks" }' -X POST https://<API Gateway URL>/stage/tasks
+```
+
 ## Deploy your app
 
 > Repeat steps 3, 5 and 6 from the `Setup Instruction` section.
@@ -66,20 +79,6 @@ npx sst tunnel --stage stage
 
 ```bash
 npx sst deploy --stage stage
-```
-
-## Testing: Curl Command
-
-1. GET /tasks
-
-```bash
-curl https://<API Gateway URL>/stage/tasks
-```
-
-2. POST /tasks
-
-```bash
-curl -H 'Content-Type: application/json' -d '{ "description":"This the first tasks" }' -X POST https://<API Gateway URL>/stage/tasks
 ```
 
 ## Additional Links
